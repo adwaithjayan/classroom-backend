@@ -1,5 +1,6 @@
 import cors from "cors";
 import express from "express";
+import SubjectsRoutes from "./routes/subjects";
 
 const app = express();
 const PORT = 8000;
@@ -11,6 +12,10 @@ app.use(
     credentials: true, // allow cookies
   })
 );
+
+app.use(express.json());
+
+app.use("/api/subjects", SubjectsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend server is running!");
