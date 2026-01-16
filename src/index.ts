@@ -1,13 +1,21 @@
+import cors from "cors";
 import express from "express";
 
 const app = express();
-
 const PORT = 8000;
 
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL, // React app URL
+    methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed HTTP methods
+    credentials: true, // allow cookies
+  })
+);
+
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Backend server is running!");
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 });
